@@ -16,5 +16,13 @@ namespace birkafarkas
         {
             InitializeComponent();
         }
+
+        private void palyaKep1_MouseMove(object sender, MouseEventArgs e)
+        {
+            int x, y;
+            palyaKep1.PixelToLogic(e.X, e.Y, out x, out y);
+            Text = String.Format("px:{0} py:{1} x:{2} y:{3}", e.X, e.Y, x, y);
+            palyaKep1.select(x, y);
+        }
     }
 }

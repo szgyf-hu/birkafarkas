@@ -85,6 +85,15 @@ namespace birkafarkas
 
                         }
                     }
+
+                if (selectedX >= 0 && selectedX <= 7
+                    &&
+                    selectedY >= 0 && selectedY <= 7)
+                    bufferg.DrawRectangle(Pens.Yellow,
+                        ox + A * selectedX - A / 2,
+                        oy + A * selectedY - A / 2,
+                        A, 
+                        A);
             }
             e.Graphics.DrawImage(buffer, ClientRectangle.Left, ClientRectangle.Top);
         }
@@ -104,6 +113,27 @@ namespace birkafarkas
             buffer = new Bitmap(ClientSize.Width, ClientSize.Height);
             bufferg = Graphics.FromImage(buffer);
 
+            Invalidate();
+        }
+
+        public void PixelToLogic(int px, int py, out int x, out int y)
+        {
+            px -= ox;
+            py -= oy;
+
+            px += A / 2;
+            py += A / 2;
+
+            x = px / A;
+            y = py / A;
+        }
+
+        int selectedX, selectedY;
+
+        public void select(int x, int y)
+        {
+            selectedX = x;
+            selectedY = y;
             Invalidate();
         }
     }

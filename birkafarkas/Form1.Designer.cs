@@ -48,6 +48,7 @@
             this.palyaKep1.Size = new System.Drawing.Size(432, 337);
             this.palyaKep1.TabIndex = 1;
             this.palyaKep1.Text = "palyaKep1";
+            this.palyaKep1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.palyaKep1_MouseMove);
             // 
             // Form1
             // 
