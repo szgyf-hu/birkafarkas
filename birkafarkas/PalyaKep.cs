@@ -18,6 +18,15 @@ namespace birkafarkas
 
         Palya palya = new Palya();
 
+        Image sheep;
+        Image wolf;
+
+        public PalyaKep() : base()
+        {
+            sheep = Image.FromFile(@"c:\__ati\sheep.png");
+            wolf = Image.FromFile(@"c:\__ati\wolf.png");
+        }
+
         public void setPalya(Palya palya)
         {
             this.palya = palya;
@@ -30,6 +39,8 @@ namespace birkafarkas
 
             if (palya != null)
             {
+                Pen p = new Pen(Color.Blue, 5);
+
                 for (int y = 0; y < 7; y++)
                     for (int x = 0; x < 7; x++)
                     {
@@ -38,26 +49,39 @@ namespace birkafarkas
                         {
                             int px = ox + A * x;
                             int py = oy + A * y;
-                            bufferg.FillEllipse(Brushes.Red, px - 10, py - 10, 20, 20);
 
-                            int A2 = (int)((A / 2)*0.8);
+                            int A2 = A;// (int)((A / 2)*0.8);
 
+                            /*
                             if (cs.Ellista[(int)EIrany.Fel] != null)
-                                bufferg.DrawLine(Pens.Red, px, py, px, py - A2);
+                                bufferg.DrawLine(p, px, py, px, py - A2);
                             if (cs.Ellista[(int)EIrany.JobbraFel] != null)
-                                bufferg.DrawLine(Pens.Red, px, py, px + A2, py - A2);
+                                bufferg.DrawLine(p, px, py, px + A2, py - A2);*/
                             if (cs.Ellista[(int)EIrany.Jobbra] != null)
-                                bufferg.DrawLine(Pens.Red, px, py, px + A2, py);
+                                bufferg.DrawLine(p, px, py, px + A2, py);
                             if (cs.Ellista[(int)EIrany.JobbraLe] != null)
-                                bufferg.DrawLine(Pens.Red, px, py, px + A2, py + A2);
+                                bufferg.DrawLine(p, px, py, px + A2, py + A2);
                             if (cs.Ellista[(int)EIrany.Le] != null)
-                                bufferg.DrawLine(Pens.Red, px, py, px, py + A2);
+                                bufferg.DrawLine(p, px, py, px, py + A2);
                             if (cs.Ellista[(int)EIrany.BalraLe] != null)
-                                bufferg.DrawLine(Pens.Red, px, py, px - A2, py + A2);
-                            if (cs.Ellista[(int)EIrany.Balra] != null)
-                                bufferg.DrawLine(Pens.Red, px, py, px - A2, py);
+                                bufferg.DrawLine(p, px, py, px - A2, py + A2);
+                            /*if (cs.Ellista[(int)EIrany.Balra] != null)
+                                bufferg.DrawLine(p, px, py, px - A2, py);
                             if (cs.Ellista[(int)EIrany.BalraFel] != null)
-                                bufferg.DrawLine(Pens.Red, px, py, px - A2, py - A2);
+                                bufferg.DrawLine(p, px, py, px - A2, py - A2);*/
+
+                            switch (cs.Tipus)
+                            {
+                                case ECsomopontTipus.Üres:
+                                    bufferg.FillEllipse(Brushes.Red, px - 10, py - 10, 20, 20); break;
+                                case ECsomopontTipus.Birka:
+                                    bufferg.DrawImage(sheep, px - 64 / 2, py - 64 / 2, 64, 64); break;
+                                case ECsomopontTipus.Farkas:
+                                    bufferg.DrawImage(wolf, px - 64 / 2, py - 64 / 2, 64, 64); break;
+                            }
+
+
+
 
                         }
                     }
