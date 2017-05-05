@@ -16,10 +16,29 @@ namespace birkafarkas
         Bitmap buffer;
         Graphics bufferg;
 
+        Palya palya = new Palya();
+
+        public void setPalya(Palya palya)
+        {
+            this.palya = palya;
+            Invalidate();
+        }
+
         protected override void OnPaint(PaintEventArgs e)
         {
             bufferg.Clear(Color.DarkGreen);
 
+            if (palya != null)
+            {
+                for (int y = 0; y < 7; y++)
+                    for (int x = 0; x < 7; x++)
+                        if (palya.Csomopontok[x, y] != null)
+                        {
+                            int px = ox + A * x;
+                            int py = oy + A * y;
+                            bufferg.FillEllipse(Brushes.Red, px-10, py-10, 20, 20);
+                        }
+            }
             e.Graphics.DrawImage(buffer, ClientRectangle.Left, ClientRectangle.Top);
         }
 

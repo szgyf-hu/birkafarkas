@@ -52,25 +52,33 @@ namespace birkafarkas
                     if (Csomopontok[x, y] != null)
                     {
                         // BalraFel vizsgálat
-                        if (Csomopontok[x - 1, y - 1] != null
+                        if (x>0 && y>0
+                            &&
+                            Csomopontok[x - 1, y - 1] != null
                             &&
                             Csomopontok[x - 1, y - 1].Ellista[(int)EIrany.JobbraLe] != null)
                             Csomopontok[x, y].Ellista[(int)EIrany.BalraFel] = Csomopontok[x - 1, y - 1];
 
                         // Felfele vizsgálat
-                        if (Csomopontok[x, y - 1] != null
+                        if (y>0
+                            &&
+                            Csomopontok[x, y - 1] != null
                             &&
                             Csomopontok[x, y - 1].Ellista[(int)EIrany.Le] != null)
                             Csomopontok[x, y].Ellista[(int)EIrany.Fel] = Csomopontok[x, y - 1];
 
                         // JobbraFel vizsgálat
-                        if (Csomopontok[x + 1, y - 1] != null
+                        if (x<6 && y>0
+                            &&
+                            Csomopontok[x + 1, y - 1] != null
                             &&
                             Csomopontok[x + 1, y - 1].Ellista[(int)EIrany.BalraLe] != null)
                             Csomopontok[x, y].Ellista[(int)EIrany.JobbraFel] = Csomopontok[x + 1, y - 1];
 
                         // Balra vizsgálat 
-                        if (Csomopontok[x - 1, y] != null
+                        if (x>0
+                            &&
+                            Csomopontok[x - 1, y] != null
                             &&
                             Csomopontok[x - 1, y].Ellista[(int)EIrany.Jobbra] != null)
                             Csomopontok[x, y].Ellista[(int)EIrany.Balra] = Csomopontok[x - 1, y];
