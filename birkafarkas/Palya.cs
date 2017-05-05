@@ -17,16 +17,16 @@ namespace birkafarkas
                     if (x > 1 && x < 5 || y > 1 && y < 5)
                         Csomopontok[x, y] = new Csomopont();
 
-            for (int i = 0, x = 2, y = 0; i < 3; i++)
+            for (int i = 0, x = 2, y = 0; i < 4; i++)
                 Csomopontok[x, y].Ellista[(int)EIrany.JobbraLe] = Csomopontok[++x, ++y];
 
-            for (int i = 0, x = 4, y = 0; i < 3; i++)
+            for (int i = 0, x = 4, y = 0; i < 4; i++)
                 Csomopontok[x, y].Ellista[(int)EIrany.BalraLe] = Csomopontok[--x, ++y];
 
-            for (int i = 0, x = 0, y = 2; i < 3; i++)
+            for (int i = 0, x = 0, y = 2; i < 4; i++)
                 Csomopontok[x, y].Ellista[(int)EIrany.JobbraLe] = Csomopontok[++x, ++y];
 
-            for (int i = 0, x = 6, y = 2; i < 3; i++)
+            for (int i = 0, x = 6, y = 2; i < 4; i++)
                 Csomopontok[x, y].Ellista[(int)EIrany.BalraLe] = Csomopontok[--x, ++y];
 
             for (int y = 0; y < 7; y++)
