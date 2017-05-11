@@ -79,7 +79,11 @@ namespace birkafarkas
                         switch (cs.Tipus)
                         {
                             case ECsomopontTipus.Üres:
-                                bufferg.FillEllipse(Brushes.Red, px - 10, py - 10, 20, 20); break;
+                                if (cs.LepesTipp)
+                                    bufferg.FillEllipse(Brushes.Lime, px - 10, py - 10, 20, 20);
+                                else
+                                    bufferg.FillEllipse(Brushes.Red, px - 10, py - 10, 20, 20);
+                                break;
                             case ECsomopontTipus.Birka:
                                 bufferg.DrawImage(sheep, px - 64 / 2, py - 64 / 2, 64, 64); break;
                             case ECsomopontTipus.Farkas:
@@ -142,6 +146,8 @@ namespace birkafarkas
         {
             selectedX = x;
             selectedY = y;
+            palya.TippekBeallitasa(x, y);
+            Redraw();
             Invalidate();
         }
     }

@@ -52,7 +52,7 @@ namespace birkafarkas
                     if (Csomopontok[x, y] != null)
                     {
                         // BalraFel vizsgálat
-                        if (x>0 && y>0
+                        if (x > 0 && y > 0
                             &&
                             Csomopontok[x - 1, y - 1] != null
                             &&
@@ -60,7 +60,7 @@ namespace birkafarkas
                             Csomopontok[x, y].Ellista[(int)EIrany.BalraFel] = Csomopontok[x - 1, y - 1];
 
                         // Felfele vizsgálat
-                        if (y>0
+                        if (y > 0
                             &&
                             Csomopontok[x, y - 1] != null
                             &&
@@ -68,7 +68,7 @@ namespace birkafarkas
                             Csomopontok[x, y].Ellista[(int)EIrany.Fel] = Csomopontok[x, y - 1];
 
                         // JobbraFel vizsgálat
-                        if (x<6 && y>0
+                        if (x < 6 && y > 0
                             &&
                             Csomopontok[x + 1, y - 1] != null
                             &&
@@ -76,7 +76,7 @@ namespace birkafarkas
                             Csomopontok[x, y].Ellista[(int)EIrany.JobbraFel] = Csomopontok[x + 1, y - 1];
 
                         // Balra vizsgálat 
-                        if (x>0
+                        if (x > 0
                             &&
                             Csomopontok[x - 1, y] != null
                             &&
@@ -99,6 +99,38 @@ namespace birkafarkas
                             Csomopontok[x, y].Tipus = ECsomopontTipus.Üres;
 
             Csomopontok[5, 3].Tipus = ECsomopontTipus.Farkas;
+        }
+
+        public void TippekBeallitasa(int x, int y)
+        {
+            if (x < 0
+                ||
+                x > 6
+                ||
+                y < 0
+                ||
+                y > 6)
+                return;
+
+            Csomopont cs = Csomopontok[x, y];
+
+            if (cs == null)
+                return;
+
+            if (cs.Tipus == ECsomopontTipus.Üres)
+                return;
+
+            switch (cs.Tipus)
+            {
+                case ECsomopontTipus.Birka:
+                    for (int i = 0; i < cs.Ellista.Length; i++)
+                        if (cs.Ellista[i] != null) // arra van út
+                            if (cs.Ellista[i].Tipus == ECsomopontTipus.Üres)
+                                cs.Ellista[i].LepesTipp = true;
+
+                    break;
+                case ECsomopontTipus.Farkas: break;
+            }
         }
     }
 }
