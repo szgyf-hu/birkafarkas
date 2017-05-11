@@ -17,7 +17,7 @@ namespace birkafarkas
 
         public ECsomopontTipus Tipus = ECsomopontTipus.Üres;
 
-        public bool LepesTipp = false;
+        public ETipp LepesTipp = ETipp.Semmi;
 
         public Csomopont[] Ellista = new Csomopont[8];
     }

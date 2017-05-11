@@ -78,12 +78,6 @@ namespace birkafarkas
 
                         switch (cs.Tipus)
                         {
-                            case ECsomopontTipus.Üres:
-                                if (cs.LepesTipp)
-                                    bufferg.FillEllipse(Brushes.Lime, px - 10, py - 10, 20, 20);
-                                else
-                                    bufferg.FillEllipse(Brushes.Red, px - 10, py - 10, 20, 20);
-                                break;
                             case ECsomopontTipus.Birka:
                                 bufferg.DrawImage(sheep, px - 64 / 2, py - 64 / 2, 64, 64); break;
                             case ECsomopontTipus.Farkas:
@@ -106,6 +100,30 @@ namespace birkafarkas
                     oy + A * selectedY - A / 2,
                     A,
                     A);
+
+            for (int y = 0; y < 7; y++)
+                for (int x = 0; x < 7; x++)
+                {
+                    Csomopont cs = palya.Csomopontok[x, y];
+                    if (cs != null)
+                    {
+                        int px = ox + A * x;
+                        int py = oy + A * y;
+
+                        int A2 = A;// (int)((A / 2)*0.8);
+
+                        switch (cs.Tipus)
+                        {
+                            case ECsomopontTipus.Üres:
+                                switch (cs.LepesTipp) {
+                                    case ETipp.Semmi: bufferg.FillEllipse(Brushes.Red, px - 10, py - 10, 20, 20); break;
+                                    case ETipp.Lepes: bufferg.FillEllipse(Brushes.Lime, px - 10, py - 10, 20, 20); break;
+                                    case ETipp.Ugras: bufferg.FillEllipse(Brushes.Orange, px - 10, py - 10, 20, 20); break;
+                                }
+                                break;
+                        }
+                    }
+                }
         }
 
         protected override void OnPaintBackground(PaintEventArgs pevent)
@@ -140,14 +158,16 @@ namespace birkafarkas
             y = py / A;
         }
 
-        int selectedX, selectedY;
+        public int selectedX, selectedY;
 
         public void select(int x, int y)
         {
-            selectedX = x;
-            selectedY = y;
-            palya.TippekBeallitasa(x, y);
-            Redraw();
+            if (selectedX != x || selectedY != y)
+            {
+                selectedX = x;
+                selectedY = y;
+                palya.TippekBeallitasa(selectedX, selectedY);
+            }
             Invalidate();
         }
     }

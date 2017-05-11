@@ -49,6 +49,7 @@
     <Compile Include="Csomopont.cs" />
     <Compile Include="ECsomopontTipus.cs" />
     <Compile Include="EIrany.cs" />
+    <Compile Include="ETipp.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
